@@ -34,7 +34,7 @@ def distance_callback(from_index, to_index):
     '''convert from index of routing manager (i.e. route point n) to index of positions (i.e. location matrix point x)'''
     return scaled_dist_matrix[manager.IndexToNode(from_index)][manager.IndexToNode(to_index)]
 
-data = create_data_model(500, 20)
+data = create_data_model(5, 20)
 scaled_dist_matrix = compute_distance_matrix(data['locations'], 1)
 
 manager = pywrapcp.RoutingIndexManager(len(data['locations']), data['num_vehicles'], data['depot'])
@@ -45,6 +45,7 @@ routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
 
 search_parameters = pywrapcp.DefaultRoutingSearchParameters()
 search_parameters.first_solution_strategy = (routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
+#search_parameters.
 
 solution = routing.SolveWithParameters(search_parameters)
 
@@ -69,5 +70,5 @@ if solution:
     route_points = reorder_points(routing, manager, solution, data)
     #print('Route: {}'.format(route_points))
     x, y = convert_to_plot(route_points)
-    plt.plot(x, y, ls='-', marker='o', mfc='r')
+    plt.plot(x, y, ls='-', marker='o', mfc='w', mec='r')
     plt.show()
