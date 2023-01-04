@@ -2,8 +2,11 @@ import math
 import numpy as np
 from itertools import permutations
 import matplotlib.pyplot as plt
+import time
 
-n = 10
+startTime = time.time()
+
+n = 6
 
 def create_scaled_random(max_pos, n_points, seed):
     np.random.seed(seed)
@@ -53,6 +56,9 @@ def convert_to_plot(points):
     x = [point[0] for point in points]
     y = [point[1] for point in points]
     return x, y
+
+endTime = time.time()
+print(round(abs(startTime - endTime), 2))
 
 #points = [data['locations'][i] for i in best['route']]
 x, y = convert_to_plot([data['locations'][i] for i in best['route']])

@@ -3,6 +3,9 @@ from ortools.constraint_solver import pywrapcp
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import time
+
+start = time.time()
 
 def create_scaled_random(max_pos, n_points, seed):
     np.random.seed(seed)
@@ -66,9 +69,12 @@ def convert_to_plot(points):
     y = [point[1] for point in points]
     return x, y
 
+end = time.time()
+
 if solution:
     route_points = reorder_points(routing, manager, solution, data)
     #print('Route: {}'.format(route_points))
+    print(round(end-start, 2))
     x, y = convert_to_plot(route_points)
     plt.plot(x, y, ls='-', marker='o', mfc='w', mec='r')
     plt.show()
