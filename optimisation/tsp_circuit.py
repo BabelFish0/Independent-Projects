@@ -37,7 +37,7 @@ def distance_callback(from_index, to_index):
     '''convert from index of routing manager (i.e. route point n) to index of positions (i.e. location matrix point x)'''
     return scaled_dist_matrix[manager.IndexToNode(from_index)][manager.IndexToNode(to_index)]
 
-data = create_data_model(5, 20)
+data = create_data_model(12, 20)
 scaled_dist_matrix = compute_distance_matrix(data['locations'], 1)
 
 manager = pywrapcp.RoutingIndexManager(len(data['locations']), data['num_vehicles'], data['depot'])

@@ -6,7 +6,7 @@ import time
 
 startTime = time.time()
 
-n = 6
+n = 10
 
 def create_scaled_random(max_pos, n_points, seed):
     np.random.seed(seed)
